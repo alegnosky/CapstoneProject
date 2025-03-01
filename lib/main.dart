@@ -1,45 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vpn_capstone/Controllers/HomeController.dart';
 import 'package:vpn_capstone/Screens/HomeScreen.dart';
 import 'package:vpn_capstone/appPreferences/appPreferences.dart';
+
 
 late Size screenSize;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await AppPreferences.initHive();
+  Get.put(HomeController());
 
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    AppPreferences.darkModeNotifier.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Capstone - VPN',
       theme: ThemeData(
-          appBarTheme: AppBarTheme(
-              centerTitle: true, elevation: 3
-          ),
+        appBarTheme: const AppBarTheme(centerTitle: true, elevation: 3),
       ),
-      themeMode: AppPreferences.darkMode ? ThemeMode.dark : ThemeMode.light,
+      themeMode:
+      AppPreferences.darkModeNotifier.value ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          appBarTheme: AppBarTheme(
-
-              centerTitle: true, elevation: 3
-          ),
+        brightness: Brightness.dark,
+        appBarTheme: const AppBarTheme(centerTitle: true, elevation: 3),
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
   }
-}
 
-extension AppTheme on ThemeData{
-  Color get lightTextColor => AppPreferences.darkMode ? Colors.white70 : Colors.black54;
-  Color get bottomNavigationColor => AppPreferences.darkMode ? Colors.white70 : Colors.blueGrey;
+  @override
+  void dispose() {
+    AppPreferences.darkModeNotifier.removeListener(() {
+      setState(() {});
+    });
+    super.dispose();
+  }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_capstone/main.dart';
 
-class RoundWidget extends StatelessWidget{
+class RoundWidget extends StatelessWidget {
   final String title;
   final String subTitle;
   final Widget roundWidget;
 
-  RoundWidget({
+  const RoundWidget({
     super.key,
     required this.title,
     required this.subTitle,
@@ -22,28 +22,30 @@ class RoundWidget extends StatelessWidget{
       child: Column(
         children: [
           roundWidget,
-
-          const SizedBox(
-            height: 7,
-          ),
+          const SizedBox(height: 7),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(
-            height: 7,
-          ),
-          Text(
-            subTitle,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
+          if (subTitle.isNotEmpty) ...[
+            const SizedBox(height: 7),
+            Text(
+              subTitle,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
             ),
-          ),
-        ]
+          ],
+        ],
       ),
     );
   }
