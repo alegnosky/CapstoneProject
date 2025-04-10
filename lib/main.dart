@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Capstone - VPN',
+      title: 'Capstone - Android Security Suite',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(centerTitle: true, elevation: 3),
       ),
