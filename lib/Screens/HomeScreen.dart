@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_capstone/Controllers/HomeController.dart';
+import 'package:vpn_capstone/Screens/PasswordManagementScreen.dart';
 import 'package:vpn_capstone/Screens/serverList.dart';
 import 'package:vpn_capstone/Widgets/ipCard.dart';
 import 'package:vpn_capstone/appPreferences/appPreferences.dart';
@@ -31,7 +32,6 @@ class HomeScreen extends StatelessWidget {
 
     VpnApi.getIp(ipInformation: _ipInfo);
 
-
     screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -44,9 +44,12 @@ class HomeScreen extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.blueGrey,
-      title: const Text("VPN Capstone Project"),
+      title: const Text("Android Security Suite"),
+      leading: IconButton(
+        onPressed: () => Get.to(() => PasswordManagementScreen()),
+        icon: const Icon(Icons.password),
+      ),
       actions: [
-
         IconButton(
           onPressed: _toggleTheme,
           icon: const Icon(Icons.brightness_2_sharp),
@@ -110,12 +113,10 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           _buildVpnSection(),
-
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Divider(thickness: 1),
           ),
-
           _buildNetworkSection(),
         ],
       ),
@@ -197,7 +198,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-
           Obx(() => Column(
                 children: [
                   _buildNetworkInfoCard(
