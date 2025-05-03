@@ -55,12 +55,6 @@ class _PasswordManagementScreenState extends State<PasswordManagementScreen> {
     return Colors.green;
   }
 
-  String _getStrengthText(double strength) {
-    if (strength < 0.3) return "Weak";
-    if (strength < 0.7) return "Medium";
-    return "Strong";
-  }
-
   Future<void> _savePassword() async {
     String identifier = _identifierController.text.trim();
     String password = _passwordController.text;

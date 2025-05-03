@@ -150,28 +150,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildVpnSection() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
-            child: Text(
-              "VPN Connection",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          _buildVpnButton(),
-          const SizedBox(height: 24),
-        ],
-      ),
-    );
-  }
-
   Widget _buildVpnButton() {
     return Obx(() => Semantics(
           button: true,
