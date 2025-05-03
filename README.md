@@ -3,8 +3,6 @@
 CSCI 490 Capstone Project
 An Android based app that provides an all-in-one VPN client and Password Management system.
 
-## Getting Started
-
 *Potential UI updates during dead week and leading up to final presentation yet to be implemented*
 
 ## Setup for Testing
