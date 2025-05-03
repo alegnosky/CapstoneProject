@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_capstone/Controllers/HomeController.dart';
+import 'package:vpn_capstone/Controllers/passwordController.dart';
 import 'package:vpn_capstone/Screens/PasswordManagementScreen.dart';
 import 'package:vpn_capstone/Screens/serverList.dart';
 import 'package:vpn_capstone/Widgets/ipCard.dart';
 import 'package:vpn_capstone/appPreferences/appPreferences.dart';
 import 'package:vpn_capstone/main.dart';
+import 'package:vpn_capstone/passwordServices/passwordAuthentication.dart';
 import 'package:vpn_capstone/vpnCore/vpnCore.dart';
 import 'package:vpn_capstone/vpnInfo/ipInfo.dart';
 import 'package:vpn_capstone/vpnAPI/vpnAPI.dart';
@@ -46,7 +48,14 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.blueGrey,
       title: const Text("Android Security Suite"),
       leading: IconButton(
-        onPressed: () => Get.to(() => PasswordManagementScreen()),
+        onPressed: () {
+          if (Get.isRegistered<PasswordController>() &&
+              Get.find<PasswordController>().isAuthenticated.value) {
+            Get.to(() => PasswordManagementScreen());
+          } else {
+            Get.to(() => PasswordAuthScreen());
+          }
+        },
         icon: const Icon(Icons.password),
       ),
       actions: [
@@ -112,12 +121,30 @@ class HomeScreen extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          _buildVpnSection(),
+          _buildNetworkSection(),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Divider(thickness: 1),
+            child: Divider(thickness: 0),
           ),
-          _buildNetworkSection(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  child: Text(
+                    "VPN Connection",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                _buildVpnButton(),
+                const SizedBox(height: 24),
+              ],
+            ),
+          ),
         ],
       ),
     );

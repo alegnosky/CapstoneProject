@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_capstone/Controllers/HomeController.dart';
+import 'package:vpn_capstone/Controllers/passwordController.dart';
 import 'package:vpn_capstone/Screens/HomeScreen.dart';
 import 'package:vpn_capstone/appPreferences/appPreferences.dart';
 
@@ -11,7 +12,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPreferences.initHive();
   Get.put(HomeController());
-
+  Get.put(PasswordController());
   runApp(const MyApp());
 }
 
