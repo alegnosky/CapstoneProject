@@ -28,20 +28,15 @@ class _ServerLocationCardState extends State<ServerLocationCard> {
   }
 
   Future<void> _connectToVpn() async {
-    // Update selected VPN info
     _homeController.vpnInfo.value = widget.vpnInfo;
     AppPreferences.vpnInfo = widget.vpnInfo;
 
-    // Return to home screen
     Get.back();
 
-    // Handle connection state
     if (_homeController.vpnConnectionState.value == VpnCore.vpnConnected) {
       await VpnCore.stopVpn();
       Future.delayed(
-          const Duration(seconds: 5),
-              () => _homeController.connectVpn()
-      );
+          const Duration(seconds: 5), () => _homeController.connectVpn());
     } else {
       _homeController.connectVpn();
     }

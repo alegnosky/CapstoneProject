@@ -1,16 +1,25 @@
-# VPN
+# Android Security Suite
 
-A new Flutter project.
+CSCI 490 Capstone Project
+An Android based app that provides an all-in-one VPN client and Password Management system.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+*Potential UI updates during dead week and leading up to final presentation yet to be implemented*
 
-A few resources to get you started if this is your first Flutter project:
+## Setup for Testing
+Download ZIP folder.
+Enable an Android emulator through the Device Manger toolbar on Android Studio.
+Through the terminal use these commands to ensure a clean starting environment:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+flutter clean
+flutter pub get
+flutter run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Alternatively in Android Studio pressing or utilizing the "Run" keybind (Shift+F10) achieves the same results.
+Ignore the Gradle build warnings, after some time an app-debug.apk while be built.
+
+
+
+
+
